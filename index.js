@@ -10,9 +10,12 @@ import morgan from "morgan";
 import path from "path"
 import { fileURLToPath } from "url";
 
-import {register} from "./controllers/auth.js"
+import { register } from "./controllers/auth.js"
+import { createPost } from "./controllers/posts.js"
 import authRoutes from "./routes/auth.js"
 import userRoutes from "./routes/users.js"
+import postRoutes from "./routes/posts.js"
+import { verifyToken } from "./middleware/auth.js";
 
 //config
 const __filename = fileURLToPath(import.meta.url)
@@ -43,6 +46,7 @@ const upload = multer({storage})
 app.post('/auth/register', 
         upload.single('picture'), //specifies where the file will be coming from, and that there will just be one
         register);
+app.post('/post', verifyToken, upload.single('picture'), createPost)
 
 //normal routes
 app.use('/auth', authRoutes)
