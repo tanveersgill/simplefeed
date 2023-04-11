@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt"
 import {sign, verify} from "jsonwebtoken"
-import User from "../models/User.js"
+import User from "../../models/User.js"
 
 //registration 
 export const register = async (req, res, next) => {

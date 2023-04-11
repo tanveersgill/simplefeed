@@ -1,5 +1,5 @@
 import { format } from "morgan";
-import User from "../models/User";
+import User from "../../models/User";
 
 //read
 export const getUser = async (req, res, next) => {
